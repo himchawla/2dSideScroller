@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyInfo : MonoBehaviour
+public class gameManager : MonoBehaviour
 {
+        public int money;        
+
     // Start is called before the first frame update
-    private float attack, baseAttack, health, baseHealth;
-  //  baseAttack = 20.0f;
-
-
     void Start()
     {
-        
     }
 
     // Update is called once per frame
