@@ -11,22 +11,28 @@ public class enemy_move : MonoBehaviour
     
     public bool moveRight = true;
 
-    public int money;     
+    private int money;
+    public float speed = 0.5f;
+    void start()
+    {
+    
+    }
 
-    public float speed = 0.5f;   
-
-    GameObject gameManager = GameObject.Find("gameManager");
-
+     
     // Update is called once per frame
     void Update()
     {
-
+        money = gameManager.Instance.money;
       
-      // money = gameManager.GetComponent<gameManagerScript>();
+     
      if(money<100)
      {
         speed = (float)(0.5 + money * 0.03);
      }
+     else
+        {
+            speed = 4.0f;
+        }
         if(moveRight)
         {
             transform.Translate(2 * Time.deltaTime * speed, 0, 0);
