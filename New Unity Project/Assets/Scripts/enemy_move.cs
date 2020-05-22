@@ -36,12 +36,12 @@ public class enemy_move : MonoBehaviour
         if(moveRight)
         {
             transform.Translate(2 * Time.deltaTime * speed, 0, 0);
-            transform.localScale = new Vector2 (-4,4);
+            transform.localScale = new Vector2 (-1,1);
         }
         else
         {
             transform.Translate( - 2 * Time.deltaTime * speed, 0, 0);
-            transform.localScale = new Vector2 (4,4);
+            transform.localScale = new Vector2 (1,1);
         }
     }
 
