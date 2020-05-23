@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundObject;
     public float checkRadius = 1;
+    public float fallingMultiplier = 2.5f;
+    public float shortJumpMultiplier = 2.0f;
 
     public GameObject player;
 
@@ -65,10 +67,11 @@ public class PlayerMovement : MonoBehaviour
         if (isJumping)
         {
             
-            rb.AddForceAtPosition(new Vector2(0f, jumpHeight), transform.position);
+            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+            isGrounded = false;
             isJumping = false;
         }
-      //  if (isGrounded)
+        if (isGrounded)
             jumpCounter = 0;
     }
 
