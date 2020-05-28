@@ -8,6 +8,14 @@ TagManager:
   - Enemy
   - Ground
   - Spawn
+  - 1-2Wall
+  - arena1Confirmation
+  - arena2Confirmation
+  - arena4Confirmation
+  - arena3Confirmation
+  - arena2Vertical
+  - 3-4Wall
+  - arena1Vertical
   layers:
   - Default
   - TransparentFX
@@ -48,6 +56,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Enemies
+  - name: Character & Enemies
     uniqueID: 899334633
+    locked: 0
+  - name: New Layer
+    uniqueID: 601489055
     locked: 0

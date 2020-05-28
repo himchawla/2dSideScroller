@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius = 1;
     public float fallingMultiplier = 2.5f;
     public float shortJumpMultiplier = 2.0f;
-
-    public GameObject player;
+    public GameObject telarena1;
+    public GameObject telarena2;
 
     private Rigidbody2D rb;
     private bool facingRight = true;
@@ -53,8 +53,78 @@ public class PlayerMovement : MonoBehaviour
             FlipCharacter();
         }
 
+            
        
     }
+
+
+        void OnTriggerEnter2D(Collider2D trig) {
+            if(trig.gameObject.CompareTag("1-2Wall"))
+            {
+                if(gameManager.Instance.aren == gameManager.arena.arena1)
+                {
+                    gameManager.Instance.aren = gameManager.arena.arena2;
+                }
+                if(gameManager.Instance.aren == gameManager.arena.arena2)
+                {
+                    gameManager.Instance.aren = gameManager.arena.arena1;
+                }
+                
+            }
+
+            if(trig.gameObject.CompareTag("arena1Confirmation"))
+            {
+                gameManager.Instance.aren = gameManager.arena.arena1;
+            }
+        
+            if(trig.gameObject.CompareTag("arena2Confirmation"))
+            {
+                gameManager.Instance.aren = gameManager.arena.arena2;
+            }
+        
+       
+        if(trig.gameObject.CompareTag("3-4Wall"))
+            {
+                if(gameManager.Instance.aren == gameManager.arena.arena3)
+                {
+                    gameManager.Instance.aren = gameManager.arena.arena4;
+                }
+                if(gameManager.Instance.aren == gameManager.arena.arena4)
+                {
+                    gameManager.Instance.aren = gameManager.arena.arena3;
+                }
+                
+            }
+
+            if(trig.gameObject.CompareTag("arena3Confirmation"))
+            {
+                gameManager.Instance.aren = gameManager.arena.arena3;
+            }
+        
+            if(trig.gameObject.CompareTag("arena4Confirmation"))
+            {
+                gameManager.Instance.aren = gameManager.arena.arena4;
+            }
+        
+
+            if(trig.gameObject.CompareTag("arena1Vertical"))
+            {
+                gameManager.Instance.aren = gameManager.arena.arena1;
+                transform.position = telarena1.transform.position;
+                rb.velocity = new Vector2(0.0f,0.0f);
+            
+            }
+        
+            if(trig.gameObject.CompareTag("arena2Vertical"))
+            {
+                gameManager.Instance.aren = gameManager.arena.arena2;
+                transform.position = telarena2.transform.position;
+                rb.velocity = new Vector2(0.0f,0.0f);
+            }
+
+        }
+
+
 
     private void FixedUpdate()
     {

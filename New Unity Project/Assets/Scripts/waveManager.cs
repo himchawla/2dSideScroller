@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gameManager : Singleton<gameManager>
+public class waveManager : Singleton<waveManager>
 {
-        public int money;        
-
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     // Update is called once per frame
