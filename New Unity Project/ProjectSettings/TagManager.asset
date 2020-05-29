@@ -16,6 +16,7 @@ TagManager:
   - arena2Vertical
   - 3-4Wall
   - arena1Vertical
+  - batCollider
   layers:
   - Default
   - TransparentFX

@@ -4,13 +4,14 @@ using System.Net;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class enemy_move : MonoBehaviour
+public class enemy_move_warrior : MonoBehaviour
 {
    // private int money = 0;
     // Start is called before the first frame update
     
     public bool moveRight = true;
 
+    public int coinValue = 1;
     private int money;
     public float speed = 0.5f;
     void start()
@@ -28,6 +29,7 @@ public class enemy_move : MonoBehaviour
      if(money<100)
      {
         speed = (float)(0.5 + money * 0.03);
+        GetComponent<Animator>().speed = (float)(1 + money * 0.03);
      }
      else
         {
@@ -46,13 +48,19 @@ public class enemy_move : MonoBehaviour
     }
 
 
-      void OnTriggerEnter2D(Collider2D trig) {
-            if(trig.gameObject.CompareTag("turn"))
-            {
-                if(moveRight)
-                moveRight = false;
-                else 
-                moveRight = true;
-            }
-        }
+private void OnCollisionEnter2D(Collision2D other) {
+    if(moveRight)
+    moveRight = false;
+    else moveRight = true;
 }
+
+//       void OnTriggerEnter2D(Collider2D trig) {
+//             if(true)
+//             {
+//                 if(moveRight)
+//                 moveRight = false;
+//                 else 
+//                 moveRight = true;
+//             }
+//         }
+ }

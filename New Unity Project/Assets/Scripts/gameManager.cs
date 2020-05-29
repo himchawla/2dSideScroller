@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class gameManager : Singleton<gameManager>
 {
-        public int money;        
+        public int money;    
+
+        public float health;    
         public enum arena
         {
             arena1,arena2,arena3,arena4
@@ -18,6 +20,11 @@ public class gameManager : Singleton<gameManager>
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+
+    public void gameOver()
     {
         
     }

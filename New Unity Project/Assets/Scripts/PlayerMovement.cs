@@ -53,7 +53,15 @@ public class PlayerMovement : MonoBehaviour
             FlipCharacter();
         }
 
-            
+        if(rb.velocity.y < 0.0f)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallingMultiplier - 1) * Time.deltaTime;
+        }
+
+        else if(rb.velocity.y> 0.0f && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (shortJumpMultiplier - 1) * Time.deltaTime;            
+        }
        
     }
 
@@ -64,10 +72,12 @@ public class PlayerMovement : MonoBehaviour
                 if(gameManager.Instance.aren == gameManager.arena.arena1)
                 {
                     gameManager.Instance.aren = gameManager.arena.arena2;
+                    arenaManager.Instance.arena2Begin();
                 }
                 if(gameManager.Instance.aren == gameManager.arena.arena2)
                 {
                     gameManager.Instance.aren = gameManager.arena.arena1;
+                    arenaManager.Instance.arena2Begin();
                 }
                 
             }
@@ -75,11 +85,13 @@ public class PlayerMovement : MonoBehaviour
             if(trig.gameObject.CompareTag("arena1Confirmation"))
             {
                 gameManager.Instance.aren = gameManager.arena.arena1;
+                arenaManager.Instance.arena1Begin();
             }
         
             if(trig.gameObject.CompareTag("arena2Confirmation"))
             {
                 gameManager.Instance.aren = gameManager.arena.arena2;
+                arenaManager.Instance.arena2Begin();
             }
         
        
@@ -149,5 +161,18 @@ public class PlayerMovement : MonoBehaviour
     {
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
+    }
+
+
+    public void damagePlayer(float damage)
+    {
+        if(gameManager.Instance.health - damage > 0)
+        {
+            gameManager.Instance.health -= damage;
+        }
+        else 
+        {
+            gameManager.Instance.gameOver();
+        }
     }
 }
