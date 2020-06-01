@@ -12,6 +12,8 @@ public class gameManager : Singleton<gameManager>
             arena1,arena2,arena3,arena4
         };
 
+        public GameObject parallax;
+
         public arena aren = arena.arena1;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,7 @@ public class gameManager : Singleton<gameManager>
     // Update is called once per frame
     void Update()
     {
-        
+        //parallax.transform.position = new Vector3 (0,-66,0);
     }
 
     public void gameOver()

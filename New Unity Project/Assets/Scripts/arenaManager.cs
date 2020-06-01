@@ -24,6 +24,7 @@ public class arenaManager : Singleton<arenaManager>
         player.GetComponent<PlayerMovement>().moveSpeed = 4;
         player.GetComponent<PlayerMovement>().jumpHeight = 10;
         player.GetComponent<PlayerMovement>().maxJumpCounter = 1;
+    gameManager.Instance.parallax.transform.position = new Vector3(gameManager.Instance.parallax.transform.position.x, -28, gameManager.Instance.parallax.transform.position.z);
     }
 
     public void arena2Begin()
@@ -31,20 +32,24 @@ public class arenaManager : Singleton<arenaManager>
         player.GetComponent<PlayerMovement>().moveSpeed = 6;
         player.GetComponent<PlayerMovement>().jumpHeight = 5;
         player.GetComponent<PlayerMovement>().maxJumpCounter = 2;
+    gameManager.Instance.parallax.transform.position = new Vector3(gameManager.Instance.parallax.transform.position.x, -28, gameManager.Instance.parallax.transform.position.z);
+        waveManager.Instance.enemies[0].GetComponent<enemy_move_warrior>().speed = 0.5f;
     }
 
-        void arena3Begin()
+      public  void arena3Begin()
     {
         player.GetComponent<PlayerMovement>().moveSpeed = 3;
         player.GetComponent<PlayerMovement>().jumpHeight = 7;
         player.GetComponent<PlayerMovement>().maxJumpCounter = 1;
+        gameManager.Instance.parallax.transform.position = new Vector3(gameManager.Instance.parallax.transform.position.x, -66, gameManager.Instance.parallax.transform.position.z);
     }
 
-        void arena4Begin()
+        public void arena4Begin()
     {
         player.GetComponent<PlayerMovement>().moveSpeed = 5;
         player.GetComponent<PlayerMovement>().jumpHeight = 4;
         player.GetComponent<PlayerMovement>().maxJumpCounter = 2;
+    gameManager.Instance.parallax.transform.position = new Vector3(gameManager.Instance.parallax.transform.position.x, -66, gameManager.Instance.parallax.transform.position.z);
     }
 
 }

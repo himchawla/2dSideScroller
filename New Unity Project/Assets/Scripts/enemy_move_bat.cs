@@ -14,6 +14,7 @@ public class enemy_move_bat : MonoBehaviour
     private int money;
     public float speed = 1.0f;
 
+    public int coinValue = 4;
     public float gravity = 1.0f;
 
     public float maxHeight = 3.0f;

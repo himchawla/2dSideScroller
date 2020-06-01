@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6734316567580613790}
   - component: {fileID: 6734316567580613791}
   - component: {fileID: 6734316567580613760}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6734316567580613762}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.79, y: -29.08, z: 4.770765}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -117,10 +117,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 619c4215db9cb1244a73377cb59971ee, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6734316567580613791
 BoxCollider2D:
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6734316567580613762}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 619c4215db9cb1244a73377cb59971ee, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

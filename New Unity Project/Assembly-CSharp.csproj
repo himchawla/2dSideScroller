@@ -51,8 +51,10 @@
      <Compile Include="Assets\Scripts\enemy_move_warrior.cs" />
      <Compile Include="Assets\Scripts\followPlayer.cs" />
      <Compile Include="Assets\Scripts\gameManager.cs" />
+     <Compile Include="Assets\Scripts\parallax.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Singleton.cs.cs" />
+     <Compile Include="Assets\Scripts\spawnOverlap.cs" />
      <Compile Include="Assets\Scripts\waveManager.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/himch/Documents/GitHub/2dSideScroller/New Unity Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

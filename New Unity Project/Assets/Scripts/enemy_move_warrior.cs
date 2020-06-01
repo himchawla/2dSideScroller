@@ -13,7 +13,11 @@ public class enemy_move_warrior : MonoBehaviour
 
     public int coinValue = 1;
     private int money;
-    public float speed = 0.5f;
+
+    public float mul = 0.03f;
+    public float speed = 1f;
+
+    public float damage = 5.0f;
     void start()
     {
     
@@ -28,12 +32,12 @@ public class enemy_move_warrior : MonoBehaviour
      
      if(money<100)
      {
-        speed = (float)(0.5 + money * 0.03);
-        GetComponent<Animator>().speed = (float)(1 + money * 0.03);
+        speed = (float)(0.5 + speed*money * 0.03);
+        GetComponent<Animator>().speed = (float)(1 + speed * money * mul);
      }
      else
         {
-            speed = 4.0f;
+            speed = 4.0f * speed;
         }
         if(moveRight)
         {
@@ -48,19 +52,52 @@ public class enemy_move_warrior : MonoBehaviour
     }
 
 
-private void OnCollisionEnter2D(Collision2D other) {
-    if(moveRight)
-    moveRight = false;
-    else moveRight = true;
-}
 
-//       void OnTriggerEnter2D(Collider2D trig) {
-//             if(true)
-//             {
-//                 if(moveRight)
-//                 moveRight = false;
-//                 else 
-//                 moveRight = true;
-//             }
-//         }
- }
+
+      void OnTriggerEnter2D(Collider2D trig) {
+            if(trig.gameObject.CompareTag("turn") || trig.gameObject.CompareTag("Enemy"))
+            {
+                if(moveRight)
+                moveRight = false;
+                else 
+                moveRight = true;
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D other) {
+            if(other.gameObject.CompareTag("Enemy"))
+            {
+                if(moveRight)
+                {
+                    moveRight = false;
+                    transform.Translate(0.2f,0,0);
+                }
+                else 
+                {
+                    moveRight = true;
+                    transform.Translate(-0.2f,0,0);
+                }
+            }
+            else if(other.gameObject.CompareTag("Player"))
+            other.gameObject.GetComponent<PlayerMovement>().damagePlayer(damage);
+        }
+
+        private void OnCollisionStay2D(Collision2D other) {
+            if(other.gameObject.CompareTag("Enemy"))
+            {
+                if(moveRight)
+                {
+                    moveRight = false;
+                    transform.Translate(0.5f,0,0);
+                }
+                else 
+                {
+                    moveRight = true;
+                    transform.Translate(-0.5f,0,0);
+                }
+            }
+        }
+        
+ 
+
+}

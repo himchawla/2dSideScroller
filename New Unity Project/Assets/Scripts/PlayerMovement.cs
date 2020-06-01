@@ -111,11 +111,15 @@ public class PlayerMovement : MonoBehaviour
             if(trig.gameObject.CompareTag("arena3Confirmation"))
             {
                 gameManager.Instance.aren = gameManager.arena.arena3;
+                arenaManager.Instance.arena3Begin();
+
             }
         
             if(trig.gameObject.CompareTag("arena4Confirmation"))
             {
                 gameManager.Instance.aren = gameManager.arena.arena4;
+                arenaManager.Instance.arena4Begin();
+
             }
         
 
@@ -124,6 +128,8 @@ public class PlayerMovement : MonoBehaviour
                 gameManager.Instance.aren = gameManager.arena.arena1;
                 transform.position = telarena1.transform.position;
                 rb.velocity = new Vector2(0.0f,0.0f);
+                arenaManager.Instance.arena1Begin();
+
             
             }
         
@@ -132,6 +138,8 @@ public class PlayerMovement : MonoBehaviour
                 gameManager.Instance.aren = gameManager.arena.arena2;
                 transform.position = telarena2.transform.position;
                 rb.velocity = new Vector2(0.0f,0.0f);
+                arenaManager.Instance.arena2Begin();
+
             }
 
         }
