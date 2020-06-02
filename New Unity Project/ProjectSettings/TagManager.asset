@@ -17,6 +17,9 @@ TagManager:
   - 3-4Wall
   - arena1Vertical
   - batCollider
+  - JumpRight
+  - JumpLeft
+  - GroundCheck
   layers:
   - Default
   - TransparentFX

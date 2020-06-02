@@ -8,7 +8,7 @@ public class enemy_move_bat : MonoBehaviour
 {
    // private int money = 0;
     // Start is called before the first frame update
-    
+    private Rigidbody2D rb;
     public bool moveRight = true;
 
     private int money;
@@ -23,6 +23,7 @@ public class enemy_move_bat : MonoBehaviour
     void start()
     {
         currHeight = 0;
+        
     }
 
    
@@ -75,9 +76,7 @@ private void OnCollisionEnter2D(Collision2D other) {
     
     if(other.gameObject.CompareTag("Ground"))
     {
-    if(moveRight)
-    moveRight = false;
-    else moveRight = true;
+        
     }
 
    

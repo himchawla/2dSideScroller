@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Enemies\EnemyInfo.cs" />
      <Compile Include="Assets\Scripts\arenaManager.cs" />
+     <Compile Include="Assets\Scripts\coinScript.cs" />
      <Compile Include="Assets\Scripts\enemy_move_bat.cs" />
      <Compile Include="Assets\Scripts\enemy_move_warrior.cs" />
      <Compile Include="Assets\Scripts\followPlayer.cs" />
