@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject telarena1;
     public GameObject telarena2;
     public Animator animator;
-    public bool isDamaged;
+    public bool isDamaged = false;
     public bool isDead;
 
     private Rigidbody2D rb;
@@ -42,8 +42,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isDamaged = false;
-        attackTimer-=Time.deltaTime;
+        
+        attackTimer -=Time.deltaTime;
         if(attackTimer<=0)
         {
             isAttacking = false;
@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("speed", Mathf.Abs(rb.velocity.x));
         
         animator.SetBool("IsAttacking", isAttacking);
-        animator.SetBool("PlayerHit", isDamaged);
+        
         animator.SetBool("PlayerDead", isDead);
     }
 
@@ -210,7 +210,10 @@ public class PlayerMovement : MonoBehaviour
         if(gameManager.Instance.health - damage > 0)
         {
             gameManager.Instance.health -= damage;
-            isDamaged = true;
+            if (damage > 0)
+            {
+                animator.SetBool("PlayerHit", true);
+            }
         }
         else 
         {
