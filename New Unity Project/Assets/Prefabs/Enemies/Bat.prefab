@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveRight: 0
   speed: 0.5
+  coinValue: 4
   gravity: 1
   maxHeight: 3
   currHeight: 0

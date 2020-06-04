@@ -23,7 +23,7 @@ public class enemy_move_bat : MonoBehaviour
     void start()
     {
         currHeight = 0;
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
    
