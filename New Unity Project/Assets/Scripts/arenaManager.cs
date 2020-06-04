@@ -32,7 +32,7 @@ public class arenaManager : Singleton<arenaManager>
 
     public void arena2Begin()
     {
-        if (!arena2Flag || waveManager.Instance.playing)
+        if (false/*!arena2Flag || waveManager.Instance.playing*/)
             player.transform.position = arena2.transform.position;
 
         else

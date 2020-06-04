@@ -77,8 +77,71 @@ public class enemy_move_warrior : MonoBehaviour {
             else
             transform.position = new Vector3 (transform.position.x - 0.2f, transform.position.y + 1.2f, transform.position.z);
         }
+   
+        if(trig.gameObject.CompareTag("playerAttack") && (trig.gameObject.GetComponentInParent<PlayerMovement>().isAttacking))
+        {
+            for (int i = 0; i < coinValue; i++)
+            {
+                Instantiate(coin, new Vector3(transform.position.x + i, transform.position.y, 0.0f), Quaternion.identity);
+            }
+            waveManager.Instance.currEnemies[0]--;
+            Destroy(gameObject);
+        }
     }
 
+    private void  onTriggerStay2D(Collision2D trig)
+    {
+        if (trig.gameObject.CompareTag("playerAttack") && (trig.gameObject.GetComponentInParent<PlayerMovement>().isAttacking))
+        {
+            for (int i = 0; i < coinValue; i++)
+            {
+                Instantiate(coin, new Vector3(transform.position.x + i, transform.position.y, 0.0f), Quaternion.identity);
+            }
+            waveManager.Instance.currEnemies[0]--;
+            Destroy(gameObject);
+        }
+
+
+        if (trig.gameObject.CompareTag("turn") || trig.gameObject.CompareTag("Enemy"))
+        {
+            if (moveRight)
+                moveRight = false;
+            else
+                moveRight = true;
+        }
+
+        if (trig.gameObject.CompareTag("JumpRight"))
+        {
+            int nCh = Random.Range(1, 3);
+            if (nCh == 1)
+            {
+                if (moveRight)
+                    moveRight = false;
+                else
+                    moveRight = true;
+            }
+
+            else
+                transform.position = new Vector3(transform.position.x + 0.2f, transform.position.y + 1.2f, transform.position.z);
+
+        }
+
+        if (trig.gameObject.CompareTag("JumpLeft"))
+        {
+            int nCh = Random.Range(1, 3);
+            if (nCh == 1)
+            {
+                if (moveRight)
+                    moveRight = false;
+                else
+                    moveRight = true;
+            }
+
+            else
+                transform.position = new Vector3(transform.position.x - 0.2f, transform.position.y + 1.2f, transform.position.z);
+        }
+
+    }
     private void OnCollisionEnter2D (Collision2D other) {
         if (other.gameObject.CompareTag ("Enemy")) {
             if (moveRight) {
@@ -94,15 +157,8 @@ public class enemy_move_warrior : MonoBehaviour {
             }
             Destroy (gameObject);
         } else if (other.gameObject.CompareTag ("Player")) {
-            if (other.gameObject.GetComponent<PlayerMovement> ().isAttacking) {
-                for (int i = 0; i < coinValue; i++) {
-                    Instantiate (coin, new Vector3 (transform.position.x + i, transform.position.y, 0.0f), Quaternion.identity);
-                }
-                waveManager.Instance.currEnemies[0]--;
-                Destroy (gameObject);
-            } else
-
-                other.gameObject.GetComponent<PlayerMovement> ().damagePlayer (damage);
+           
+            other.gameObject.GetComponent<PlayerMovement> ().damagePlayer (damage);
         }
     }
 
@@ -110,9 +166,66 @@ public class enemy_move_warrior : MonoBehaviour {
         if (other.gameObject.CompareTag ("Enemy")) {
             if (moveRight) {
                 moveRight = false;
-                transform.Translate (0.5f, 0, 0);
-            } else {
+                switch (gameManager.Instance.aren)
+                {
+                    case gameManager.arena.arena1:
+
+                        {
+                            transform.position = waveManager.Instance.spawnPointsArena1[0].transform.position;
+                        }
+                        break;
+
+                    case gameManager.arena.arena2:
+
+                        {
+                            transform.position = waveManager.Instance.spawnPointsArena2[0].transform.position;
+                        }
+                        break;
+                    case gameManager.arena.arena3:
+
+                        {
+                            transform.position = waveManager.Instance.spawnPointsArena3[0].transform.position;
+                        }
+                        break;
+                    case gameManager.arena.arena4:
+
+                        {
+                            transform.position = waveManager.Instance.spawnPointsArena4[0].transform.position;
+                        }
+                        break;
+                }
+                } else {
                 moveRight = true;
+
+                switch (gameManager.Instance.aren)
+                {
+                    case gameManager.arena.arena1:
+
+                        {
+                            transform.position = waveManager.Instance.spawnPointsArena1[2].transform.position;
+                        }
+                        break;
+
+                    case gameManager.arena.arena2:
+
+                        {
+                            transform.position = waveManager.Instance.spawnPointsArena2[1].transform.position;
+                        }
+                        break;
+                    case gameManager.arena.arena3:
+
+                        {
+                            transform.position = waveManager.Instance.spawnPointsArena3[3].transform.position;
+                        }
+                        break;
+                    case gameManager.arena.arena4:
+
+                        {
+                            transform.position = waveManager.Instance.spawnPointsArena4[1].transform.position;
+                        }
+                        break;
+                }
+
                 transform.Translate (-0.5f, 0, 0);
             }
         }

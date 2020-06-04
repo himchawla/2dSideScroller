@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class waveManager : Singleton<waveManager> {
 
@@ -50,8 +51,8 @@ public class waveManager : Singleton<waveManager> {
     void FixedUpdate () {
         if(Input.GetButtonDown("Skip") && !playing)
         {
-            if(timeLeft>2)
-            timeLeft = 2;
+            if(timeLeft>5)
+            timeLeft = 5;
         }
         if(playing && currEnemies[0] <=0 && enemiesAlive[0] == maxNumberofEnemies[0])
         waveEnd();
