@@ -122,6 +122,11 @@ public class PlayerMovement : MonoBehaviour
                 
             }
 
+        if(trig.gameObject.CompareTag("arena2Fall"))
+        {
+            arenaManager.Instance.arena2Flag = true;
+        }
+
             if(trig.gameObject.CompareTag("arena3Confirmation"))
             {
                 gameManager.Instance.aren = gameManager.arena.arena3;

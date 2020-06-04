@@ -20,6 +20,7 @@ TagManager:
   - JumpRight
   - JumpLeft
   - GroundCheck
+  - arena2Fall
   layers:
   - Default
   - TransparentFX
