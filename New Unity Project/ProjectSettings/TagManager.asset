@@ -22,6 +22,7 @@ TagManager:
   - GroundCheck
   - arena2Fall
   - playerAttack
+  - Portal
   layers:
   - Default
   - TransparentFX
