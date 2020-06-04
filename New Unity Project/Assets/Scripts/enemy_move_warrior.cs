@@ -36,10 +36,10 @@ public class enemy_move_warrior : MonoBehaviour {
         }
         if (moveRight) {
             transform.Translate (2 * Time.deltaTime * speed, 0, 0);
-            transform.localScale = new Vector2 (-1, 1);
+            transform.localScale = new Vector2 (-1.8f, 1.8f);
         } else {
             transform.Translate (-2 * Time.deltaTime * speed, 0, 0);
-            transform.localScale = new Vector2 (1, 1);
+            transform.localScale = new Vector2 (1.8f, 1.8f);
         }
     }
 
@@ -52,10 +52,29 @@ public class enemy_move_warrior : MonoBehaviour {
         }
 
         if (trig.gameObject.CompareTag ("JumpRight")) {
-            transform.position = new Vector3 (transform.position.x + 0.2f, transform.position.y + 1.2f, transform.position.z);
+            int nCh = Random.Range (1, 3);
+            if (nCh == 1) {
+                if (moveRight)
+                    moveRight = false;
+                else
+                    moveRight = true;
+            }
+            
+            else
+                transform.position = new Vector3 (transform.position.x + 0.2f, transform.position.y + 1.2f, transform.position.z);
+
         }
 
-          if (trig.gameObject.CompareTag ("JumpLeft")) {
+        if (trig.gameObject.CompareTag ("JumpLeft")) {
+             int nCh = Random.Range (1, 3);
+            if (nCh == 1) {
+                if (moveRight)
+                    moveRight = false;
+                else
+                    moveRight = true;
+            }
+            
+            else
             transform.position = new Vector3 (transform.position.x - 0.2f, transform.position.y + 1.2f, transform.position.z);
         }
     }
@@ -69,27 +88,21 @@ public class enemy_move_warrior : MonoBehaviour {
                 moveRight = true;
                 transform.Translate (-0.2f, 0, 0);
             }
-        }
-        else if(other.gameObject.CompareTag("GroundCheck"))
-        {
-                for(int i = 0; i<coinValue; i++)
-                {
-                    Instantiate(coin, new Vector3(transform.position.x + i, transform.position.y, 0.0f), Quaternion.identity);
-                }
-                Destroy(gameObject);
-        }
-        else if (other.gameObject.CompareTag ("Player"))
-        {
-            if(other.gameObject.GetComponent<Rigidbody2D>().velocity.y < 0)
-            {
-                 for(int i = 0; i<coinValue; i++)
-                {
-                    Instantiate(coin, new Vector3(transform.position.x + i, transform.position.y, 0.0f), Quaternion.identity);
-                }
-                Destroy(gameObject);
+        } else if (other.gameObject.CompareTag ("GroundCheck")) {
+            for (int i = 0; i < coinValue; i++) {
+                Instantiate (coin, new Vector3 (transform.position.x + i, transform.position.y, 0.0f), Quaternion.identity);
             }
+            Destroy (gameObject);
+        } else if (other.gameObject.CompareTag ("Player")) {
+            if (other.gameObject.GetComponent<PlayerMovement> ().isAttacking) {
+                for (int i = 0; i < coinValue; i++) {
+                    Instantiate (coin, new Vector3 (transform.position.x + i, transform.position.y, 0.0f), Quaternion.identity);
+                }
+                waveManager.Instance.currEnemies[0]--;
+                Destroy (gameObject);
+            } else
 
-            other.gameObject.GetComponent<PlayerMovement> ().damagePlayer (damage);
+                other.gameObject.GetComponent<PlayerMovement> ().damagePlayer (damage);
         }
     }
 
@@ -104,6 +117,5 @@ public class enemy_move_warrior : MonoBehaviour {
             }
         }
     }
-    
 
 }

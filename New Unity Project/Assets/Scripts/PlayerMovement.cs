@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundObject;
     public float checkRadius = 1;
     public float fallingMultiplier = 2.5f;
+    public bool isAttacking;
+    private float attackTimer;
     public float shortJumpMultiplier = 2.0f;
     public GameObject telarena1;
     public GameObject telarena2;
@@ -31,12 +33,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        attackTimer-=Time.deltaTime;
+        if(attackTimer<=0)
+        {
+            isAttacking = false;
+        }
         moveDirection = Input.GetAxis("Horizontal");
         if (Input.GetButtonDown("Jump") && (jumpCounter < maxJumpCounter))  
         {
@@ -61,6 +68,13 @@ public class PlayerMovement : MonoBehaviour
         else if(rb.velocity.y> 0.0f && !Input.GetButton("Jump"))
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (shortJumpMultiplier - 1) * Time.deltaTime;            
+        }
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            isAttacking = true;
+            attackTimer = 0.3f;
+
         }
        
     }
@@ -145,11 +159,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+        
 
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundObject);
-
+        
        
 
 

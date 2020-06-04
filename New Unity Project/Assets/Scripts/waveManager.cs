@@ -33,6 +33,7 @@ public class waveManager : Singleton<waveManager> {
 
     public int[] enemiesAlive = { 0, 0, 0, 0 };
 
+    public int[] currEnemies;
     void Start () {
         waveStart ();
         for (int i = 0; i < 4; i++) {
@@ -47,7 +48,13 @@ public class waveManager : Singleton<waveManager> {
     // Update is called once per frame
 
     void FixedUpdate () {
-        
+        if(Input.GetButtonDown("Skip") && !playing)
+        {
+            if(timeLeft>2)
+            timeLeft = 2;
+        }
+        if(playing && currEnemies[0] <=0)
+        waveEnd();
         spawnDel -= Time.deltaTime;
         if (timeLeft > 0) {
             timeLeft -= Time.deltaTime;
@@ -61,6 +68,7 @@ public class waveManager : Singleton<waveManager> {
     void Update () {
         int ch = (int) Random.Range (1.0f, 4.0f);
         if (enemiesAlive[0] < maxNumberofEnemies[0] && playing && (spawnDel <= 0)) {
+            spawnDel -= Time.deltaTime;
 
             // int ch =1;
 
@@ -76,6 +84,7 @@ public class waveManager : Singleton<waveManager> {
                                     spawnDel = spawnDelay;
                                     ch = (int) Random.Range (1.0f, 4.0f);
 
+                                    currEnemies[0] = enemiesAlive[0];
                                 }
                                 break;
                             case 2:
@@ -83,6 +92,7 @@ public class waveManager : Singleton<waveManager> {
                                     en1ref[enemiesAlive[0]++] = Object.Instantiate (enemies[0], spawnPointsArena1[ch].transform.position, Quaternion.identity);
                                     spawnDel = spawnDelay;
                                     ch = (int) Random.Range (1.0f, 4.0f);
+                                    currEnemies[0] = enemiesAlive[0];
                                 }
                                 break;
                             case 3:
@@ -90,6 +100,7 @@ public class waveManager : Singleton<waveManager> {
                                     en1ref[enemiesAlive[0]++] = Object.Instantiate (enemies[0], spawnPointsArena1[ch].transform.position, Quaternion.identity);
                                     spawnDel = spawnDelay;
                                     ch = (int) Random.Range (1.0f, 4.0f);
+                                currEnemies[0] = enemiesAlive[0];
                                 }
                                 break;
                             case 4:
@@ -97,6 +108,8 @@ public class waveManager : Singleton<waveManager> {
                                     en1ref[enemiesAlive[0]++] = Object.Instantiate (enemies[0], spawnPointsArena1[ch].transform.position, Quaternion.identity);
                                     spawnDel = spawnDelay;
                                     ch = (int) Random.Range (1.0f, 4.0f);
+                                
+                                currEnemies[0] = enemiesAlive[0];
                                 }
                                 break;
                         }
@@ -113,6 +126,7 @@ public class waveManager : Singleton<waveManager> {
                                     spawnDel = spawnDelay;
 
                                     ch = (int) Random.Range (1.0f, 4.0f);
+                               currEnemies[0] = enemiesAlive[0];
                                 }
                                 break;
                             case 2:
@@ -121,6 +135,7 @@ public class waveManager : Singleton<waveManager> {
                                     spawnDel = spawnDelay;
 
                                     ch = (int) Random.Range (1.0f, 4.0f);
+                                currEnemies[0] = enemiesAlive[0];
                                 }
                                 break;
                             case 3:
@@ -129,6 +144,7 @@ public class waveManager : Singleton<waveManager> {
                                     spawnDel = spawnDelay;
 
                                     ch = (int) Random.Range (1.0f, 4.0f);
+                                currEnemies[0] = enemiesAlive[0];
                                 }
                                 break;
                             case 4:
@@ -137,6 +153,7 @@ public class waveManager : Singleton<waveManager> {
                                     spawnDel = spawnDelay;
 
                                     ch = (int) Random.Range (1.0f, 4.0f);
+                                currEnemies[0] = enemiesAlive[0];
                                 }
                                 break;
                         }
@@ -160,7 +177,7 @@ public class waveManager : Singleton<waveManager> {
         if (maxNumberofEnemies[0] > 25)
             maxNumberofEnemies[0] = 25;
         maxNumberofEnemies[1] = (int) (2 + waveNumber * 0.5);
-        waveTime = (int)(200 + waveNumber * 7.5f);
+        waveTime = (int)(50 + waveNumber * 7.5f);
     }
 
     void waveEnd () {
