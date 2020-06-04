@@ -5,6 +5,7 @@ using UnityEngine;
 public class gameManager : Singleton<gameManager>
 {
         public int money;    
+        public GameObject canvas;
 
         public float health;    
         public enum arena
