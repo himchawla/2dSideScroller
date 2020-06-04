@@ -35,5 +35,7 @@ public class gameManager : Singleton<gameManager>
         SceneManager.LoadScene("GameOver");
     }
 
+    public void 
+
 
 }
