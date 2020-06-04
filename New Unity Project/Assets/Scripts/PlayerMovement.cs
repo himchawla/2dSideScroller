@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public bool isDamaged;
     public bool isDead;
+    public healthBarScript healthbar;
+    private float damageTimer = 0.0f;
 
     private Rigidbody2D rb;
     private bool facingRight = true;
@@ -36,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        healthbar.setMaxHealth(100);
     }
 
     // Update is called once per frame
@@ -47,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         if(attackTimer<=0)
         {
             isAttacking = false;
+            gameManager.Instance.isAttacking = false;
         }
         moveDirection = Input.GetAxis("Horizontal");
         if (Input.GetButtonDown("Jump") && (jumpCounter < maxJumpCounter))  
@@ -77,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             isAttacking = true;
+            gameManager.Instance.isAttacking = true;
             attackTimer = 0.3f;
             
 
@@ -85,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("speed", Mathf.Abs(rb.velocity.x));
         
         animator.SetBool("IsAttacking", isAttacking);
-        animator.SetBool("PlayerHit", isDamaged);
+       
         animator.SetBool("PlayerDead", isDead);
     }
 
@@ -180,8 +184,12 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundObject);
 
-        
 
+        damageTimer -= Time.deltaTime;
+        if(damageTimer<=0)
+        {
+            animator.SetBool("PlayerHit", false);
+        }
 
         rb.velocity = new Vector2(moveDirection * moveSpeed, rb.velocity.y);
         if (isJumping)
@@ -209,8 +217,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(gameManager.Instance.health - damage > 0)
         {
+            damageTimer = 0.2f;
             gameManager.Instance.health -= damage;
             isDamaged = true;
+            animator.SetBool("PlayerHit", true);
+            healthbar.setHealth((int)gameManager.Instance.health);
         }
         else 
         {

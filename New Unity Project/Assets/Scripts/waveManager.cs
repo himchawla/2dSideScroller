@@ -23,7 +23,7 @@ public class waveManager : Singleton<waveManager> {
     public int waveTime;
     public float spawnDelay;
     private float spawnDel;
-    public int waveNumber;
+    public int waveNumber = 0;
     public float timeLeft;
 
     [SerializeField]
@@ -160,12 +160,102 @@ public class waveManager : Singleton<waveManager> {
                         }
                     }
                     break;
+
+                case gameManager.arena.arena3:
+                    {
+                        switch (ch)
+                        {
+                            case 1:
+                                {
+                                    en1ref[enemiesAlive[0]++] = Object.Instantiate(enemies[0], spawnPointsArena3[ch].transform.position, Quaternion.identity); //= Instantiate(enemies[0], spawnPointsArena3[ch].transform.position, Quaternion.identity);
+                                    spawnDel = spawnDelay;
+
+                                    ch = (int)Random.Range(1.0f, 4.0f);
+                                    currEnemies[0]++;
+                                }
+                                break;
+                            case 2:
+                                {
+                                    en1ref[enemiesAlive[0]++] = Object.Instantiate(enemies[0], spawnPointsArena3[ch].transform.position, Quaternion.identity);
+                                    spawnDel = spawnDelay;
+
+                                    ch = (int)Random.Range(1.0f, 4.0f);
+                                    currEnemies[0]++;
+                                }
+                                break;
+                            case 3:
+                                {
+                                    en1ref[enemiesAlive[0]++] = Object.Instantiate(enemies[0], spawnPointsArena3[ch].transform.position, Quaternion.identity);
+                                    spawnDel = spawnDelay;
+
+                                    ch = (int)Random.Range(1.0f, 4.0f);
+                                    currEnemies[0]++;
+                                }
+                                break;
+                            case 4:
+                                {
+                                    en1ref[enemiesAlive[0]++] = Object.Instantiate(enemies[0], spawnPointsArena3[ch].transform.position, Quaternion.identity);
+                                    spawnDel = spawnDelay;
+
+                                    ch = (int)Random.Range(1.0f, 4.0f);
+                                    currEnemies[0]++;
+                                }
+                                break;
+                        }
+                    }
+                    break;
+
+                case gameManager.arena.arena4:
+                    {
+                        switch (ch)
+                        {
+                            case 1:
+                                {
+                                    en1ref[enemiesAlive[0]++] = Object.Instantiate(enemies[0], spawnPointsArena4[ch].transform.position, Quaternion.identity); //= Instantiate(enemies[0], spawnPointsArena4[ch].transform.position, Quaternion.identity);
+                                    spawnDel = spawnDelay;
+
+                                    ch = (int)Random.Range(1.0f, 4.0f);
+                                    currEnemies[0]++;
+                                }
+                                break;
+                            case 2:
+                                {
+                                    en1ref[enemiesAlive[0]++] = Object.Instantiate(enemies[0], spawnPointsArena4[ch].transform.position, Quaternion.identity);
+                                    spawnDel = spawnDelay;
+
+                                    ch = (int)Random.Range(1.0f, 4.0f);
+                                    currEnemies[0]++;
+                                }
+                                break;
+                            case 3:
+                                {
+                                    en1ref[enemiesAlive[0]++] = Object.Instantiate(enemies[0], spawnPointsArena4[ch].transform.position, Quaternion.identity);
+                                    spawnDel = spawnDelay;
+
+                                    ch = (int)Random.Range(1.0f, 4.0f);
+                                    currEnemies[0]++;
+                                }
+                                break;
+                            case 4:
+                                {
+                                    en1ref[enemiesAlive[0]++] = Object.Instantiate(enemies[0], spawnPointsArena4[ch].transform.position, Quaternion.identity);
+                                    spawnDel = spawnDelay;
+
+                                    ch = (int)Random.Range(1.0f, 4.0f);
+                                    currEnemies[0]++;
+                                }
+                                break;
+                        }
+                    }
+                    break;
             }
 
         }
 
     }
     void waveStart () {
+
+        gameManager.Instance.health = 100;
         waveNumber++;
         for (int i = 0; i < walls.Length; i++) {
             playing = true;

@@ -18,7 +18,7 @@ public class updateCenterStuff : MonoBehaviour
             GetComponent<TextMeshProUGUI>().SetText("Wave Ends in " + ((int)waveManager.Instance.timeLeft).ToString());
 
         else if (!waveManager.Instance.playing && waveManager.Instance.timeLeft < 5)
-            GetComponent<TextMeshProUGUI>().SetText("Next Wave in" + ((int)waveManager.Instance.timeLeft).ToString());
+            GetComponent<TextMeshProUGUI>().SetText("Next Wave in " + ((int)waveManager.Instance.timeLeft).ToString());
         else
             GetComponent<TextMeshProUGUI>().SetText("");
     }

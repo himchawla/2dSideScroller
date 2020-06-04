@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gameManager : Singleton<gameManager>
 {
         public int money;    
         public GameObject canvas;
+
+        public bool isAttacking;
 
         public float health;    
         public enum arena
@@ -29,6 +32,8 @@ public class gameManager : Singleton<gameManager>
 
     public void gameOver()
     {
-        
+        SceneManager.LoadScene("GameOver");
     }
+
+
 }
