@@ -14,6 +14,7 @@ public class enemy_move_warrior : MonoBehaviour
     public GameObject coin;
     public int coinValue = 2;
     private int money;
+    public float baseSpeed = 1.0f;
     public GameObject player;
     public float mul = 0.03f;
     public float speed = 1f;
@@ -39,13 +40,13 @@ public class enemy_move_warrior : MonoBehaviour
 
         if (money < 25)
         {
-            speed = (float)(0.5 + speed * money * 0.03);
+            speed = (float)(0.5 + baseSpeed * money * 0.03);
             GetComponent<AIPath>().maxSpeed = speed * 4;
             GetComponent<Animator>().speed = (float)(1 + speed * money * mul);
         }
         else
         {
-            speed = 2.0f * speed;
+            speed = 2.0f * baseSpeed;
             GetComponent<AIPath>().maxSpeed = speed * 4;
 
         }

@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class gameManager : Singleton<gameManager>
 {
-        public int money;    
+        public int money;
+        public int moneyVal;
         public GameObject canvas;
 
         public bool isAttacking;
@@ -35,7 +36,15 @@ public class gameManager : Singleton<gameManager>
         SceneManager.LoadScene("GameOver");
     }
 
-    public void 
+    
+    public void upgradeHealth()
+    {
 
+    }
+
+    public void upgradeAttack()
+    {
+
+    }
 
 }

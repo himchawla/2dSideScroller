@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -254,9 +255,14 @@ public class waveManager : Singleton<waveManager> {
 
     }
     void waveStart () {
+          foreach(GameObject i in GameObject.FindGameObjectsWithTag("Portal"))
+        i.GetComponent<SpriteRenderer>().enabled = false;
 
         gameManager.Instance.health = 100;
-        waveNumber++;
+        if (waveNumber < 4)
+            waveNumber++;
+        else
+            waveNumber = 4;
         for (int i = 0; i < walls.Length; i++) {
             playing = true;
             timeLeft = waveTime;
@@ -296,7 +302,8 @@ public class waveManager : Singleton<waveManager> {
     }
 
     void waveEnd () {
-
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Portal"))
+            i.GetComponent<SpriteRenderer>().enabled = true;
         for (int i = 0; i < en1ref.Length; i++) {
             Destroy (en1ref[i]);
         }
