@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     public float shortJumpMultiplier = 2.0f;
     public GameObject telarena1;
     public GameObject telarena2;
+    public Animator animator;
+    public bool isDamaged;
+    public bool isDead;
 
     private Rigidbody2D rb;
     private bool facingRight = true;
@@ -39,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isDamaged = false;
         attackTimer-=Time.deltaTime;
         if(attackTimer<=0)
         {
@@ -74,9 +78,15 @@ public class PlayerMovement : MonoBehaviour
         {
             isAttacking = true;
             attackTimer = 0.3f;
+            
 
         }
-       
+
+        animator.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+        
+        animator.SetBool("IsAttacking", isAttacking);
+        animator.SetBool("PlayerHit", isDamaged);
+        animator.SetBool("PlayerDead", isDead);
     }
 
 
@@ -164,20 +174,23 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundObject);
+
         
-       
 
 
         rb.velocity = new Vector2(moveDirection * moveSpeed, rb.velocity.y);
         if (isJumping)
         {
-            
+            animator.SetBool("IsJumping", true);
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
             isGrounded = false;
             isJumping = false;
         }
         if (isGrounded)
+        {
             jumpCounter = 0;
+            animator.SetBool("IsJumping", false);
+        }
     }
 
     private void FlipCharacter()
@@ -192,9 +205,11 @@ public class PlayerMovement : MonoBehaviour
         if(gameManager.Instance.health - damage > 0)
         {
             gameManager.Instance.health -= damage;
+            isDamaged = true;
         }
         else 
         {
+            isDead = true;
             gameManager.Instance.gameOver();
         }
     }
