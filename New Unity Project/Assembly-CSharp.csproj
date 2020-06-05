@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Singleton.cs.cs" />
      <Compile Include="Assets\Scripts\spawnOverlap.cs" />
+     <Compile Include="Assets\Scripts\UI_Scripts\ShopUI.cs" />
      <Compile Include="Assets\Scripts\UI_Scripts\updateCenterStuff.cs" />
      <Compile Include="Assets\Scripts\UI_Scripts\updateWaveTimer.cs" />
      <Compile Include="Assets\Scripts\UI_Scripts\waveNumber.cs" />
