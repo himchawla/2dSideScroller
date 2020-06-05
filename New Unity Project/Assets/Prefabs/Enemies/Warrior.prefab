@@ -104,6 +104,7 @@ MonoBehaviour:
   moveRight: 0
   coin: {fileID: 5497272222662982485, guid: 1842e58af25d9b04a99ff8b59815db1c, type: 3}
   coinValue: 1
+  baseSpeed: 1
   player: {fileID: 0}
   mul: 0.03
   speed: 0.5
@@ -125,7 +126,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 619c4215db9cb1244a73377cb59971ee, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1

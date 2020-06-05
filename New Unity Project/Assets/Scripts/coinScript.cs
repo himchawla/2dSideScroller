@@ -21,6 +21,7 @@ public class coinScript : MonoBehaviour
         {
             Destroy(gameObject);
             gameManager.Instance.money++;
+            gameManager.Instance.moneyVal++;
         }
     }
 }

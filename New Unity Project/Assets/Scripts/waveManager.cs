@@ -257,15 +257,21 @@ public class waveManager : Singleton<waveManager> {
 
     }
     void waveStart () {
-          foreach(GameObject i in GameObject.FindGameObjectsWithTag("Portal"))
-        i.GetComponent<SpriteRenderer>().enabled = false;
-
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Portal"))
+        {
+            i.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        maxNumberofEnemies[0] = (int)(4 + waveNumber * 1.5);
+        if (maxNumberofEnemies[0] > 25)
+            maxNumberofEnemies[0] = 25;
+        maxNumberofEnemies[1] = (int)(2 + waveNumber * 0.5);
+        waveTime = (int)(60 + waveNumber * 7.5f);
         gameManager.Instance.health = gameManager.Instance.maxHealth;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().healthbar.setMaxHealth((int)gameManager.Instance.health);
         if (waveNumber < 4)
-            waveNumber++;
+        { waveNumber++; }
         else
-            waveNumber = 4;
+        { waveNumber = 4; }
         for (int i = 0; i < walls.Length; i++) {
             playing = true;
             timeLeft = waveTime;
@@ -297,11 +303,7 @@ public class waveManager : Singleton<waveManager> {
 
             }
 
-        maxNumberofEnemies[0] = (int) (4 + waveNumber * 1.5);
-        if (maxNumberofEnemies[0] > 25)
-            maxNumberofEnemies[0] = 25;
-        maxNumberofEnemies[1] = (int) (2 + waveNumber * 0.5);
-        waveTime = (int)(60 + waveNumber * 7.5f);
+       
     }
 
     void waveEnd () {
@@ -310,9 +312,10 @@ public class waveManager : Singleton<waveManager> {
         for (int i = 0; i < en1ref.Length; i++) {
             Destroy (en1ref[i]);
         }
-
-        if (waveNumber < 4)
-            waveBeat = false;
+        playing = false;
+        waveBeat = true;
+        
+                
         enemiesAlive[0] = 0;
         currEnemies[0] = 0;
         timeLeft = waveTime;

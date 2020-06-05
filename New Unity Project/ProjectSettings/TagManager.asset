@@ -25,6 +25,7 @@ TagManager:
   - Portal
   - CenterScreen
   - CountdownTimer
+  - pauseMenu
   layers:
   - Default
   - TransparentFX

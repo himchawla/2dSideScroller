@@ -10,8 +10,11 @@ public class gameManager : Singleton<gameManager>
         public GameObject canvas;
         public int maxHealth;
         public bool isAttacking;
+        public bool isPaused = false;
+        public float health;
+    public bool gameOverr;
+    public float gameOverTimer = 2.0f;   
 
-        public float health;    
         public enum arena
         {
             arena1,arena2,arena3,arena4
@@ -28,12 +31,39 @@ public class gameManager : Singleton<gameManager>
     // Update is called once per frame
     void Update()
     {
+        gameOverTimer -= Time.deltaTime;
+        if(gameOverr && (gameOverTimer<=0))
+        {
+            SceneManager.LoadScene("GameOver");
+
+        }
+
         //parallax.transform.position = new Vector3 (0,-66,0);
+
+        if(Input.GetKeyDown("pause"))
+        {
+            if(!isPaused)
+            {
+                isPaused = true;
+                Time.timeScale = 0;
+                GameObject.FindGameObjectWithTag("pauseMenu").SetActive(true);
+            }
+
+            if (isPaused)
+            {
+                isPaused = false;
+                Time.timeScale = 1;
+                GameObject.FindGameObjectWithTag("pauseMenu").SetActive(false);
+            }
+
+        }
     }
 
     public void gameOver()
     {
-        SceneManager.LoadScene("GameOver");
+        gameOverTimer = 2.0f;
+        gameOverr = true;
+   //     SceneManager.LoadScene("GameOver");
     }
 
     
@@ -48,6 +78,17 @@ public class gameManager : Singleton<gameManager>
     public void upgradeAttack()
     {
 
+    }
+
+    public void mainMenu()
+    {
+        SceneManager.LoadScene("StartScreen");
+    }
+
+    public void resume()
+    {
+        Time.timeScale = 1;
+        GameObject.FindGameObjectWithTag("pauseMenu").SetActive(false);
     }
 
 }

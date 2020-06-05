@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:New Unity Project/Assets/Pallet/BlackCollision.asset.meta
-guid: d31942fac641d2b47890c87a6c38311c
-NativeFormatImporter:
-=======
-guid: ca86b10e90a77274d954a27f9d49510f
+guid: 114eb8c4e384edd4e95dc1e2b6878456
 folderAsset: yes
 DefaultImporter:
->>>>>>> d8986dc86671ef1c1588f683b611f922807a5a80:New Unity Project/Assets/Shop.meta
   externalObjects: {}
-  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
