@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,7 @@ public class waveManager : Singleton<waveManager> {
     private float spawnDel;
     public int waveNumber = 0;
     public float timeLeft;
+    public bool waveBeat = false;
 
     [SerializeField]
     public GameObject[] enemies;
@@ -258,7 +260,8 @@ public class waveManager : Singleton<waveManager> {
           foreach(GameObject i in GameObject.FindGameObjectsWithTag("Portal"))
         i.GetComponent<SpriteRenderer>().enabled = false;
 
-        gameManager.Instance.health = 100;
+        gameManager.Instance.health = gameManager.Instance.maxHealth;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().healthbar.setMaxHealth((int)gameManager.Instance.health);
         if (waveNumber < 4)
             waveNumber++;
         else
@@ -307,7 +310,9 @@ public class waveManager : Singleton<waveManager> {
         for (int i = 0; i < en1ref.Length; i++) {
             Destroy (en1ref[i]);
         }
-        playing = false;
+
+        if (waveNumber < 4)
+            waveBeat = false;
         enemiesAlive[0] = 0;
         currEnemies[0] = 0;
         timeLeft = waveTime;
