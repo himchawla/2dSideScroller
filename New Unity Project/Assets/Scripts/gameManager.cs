@@ -8,7 +8,7 @@ public class gameManager : Singleton<gameManager>
         public int money;
         public int moneyVal;
         public GameObject canvas;
-
+        public int maxHealth;
         public bool isAttacking;
 
         public float health;    
@@ -37,8 +37,11 @@ public class gameManager : Singleton<gameManager>
     }
 
     
-    public void upgradeHealth()
+    public void upgradeHealth(int h)
     {
+        maxHealth += h;
+        health = maxHealth;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().healthbar.setMaxHealth((int)health);
 
     }
 

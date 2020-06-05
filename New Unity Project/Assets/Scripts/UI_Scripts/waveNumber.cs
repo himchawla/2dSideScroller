@@ -14,6 +14,10 @@ public class waveNumber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(waveManager.Instance.waveNumber<4)
         GetComponent<TextMeshProUGUI>().SetText("Wave " + waveManager.Instance.waveNumber.ToString());
+        else
+        GetComponent<TextMeshProUGUI>().SetText("Wave Final" );
+
     }
 }

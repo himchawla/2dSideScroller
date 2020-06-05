@@ -66,6 +66,7 @@
     <Compile Include="Assets\Enemies\EnemyInfo.cs" />
     <Compile Include="Assets\EnemyAi.cs" />
     <Compile Include="Assets\healthBarScript.cs" />
+    <Compile Include="Assets\mainMenu.cs" />
     <Compile Include="Assets\Scripts\arenaManager.cs" />
     <Compile Include="Assets\Scripts\coinScript.cs" />
     <Compile Include="Assets\Scripts\enemy_move_bat.cs" />

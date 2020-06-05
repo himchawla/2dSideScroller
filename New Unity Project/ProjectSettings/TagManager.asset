@@ -23,6 +23,8 @@ TagManager:
   - arena2Fall
   - playerAttack
   - Portal
+  - CenterScreen
+  - CountdownTimer
   layers:
   - Default
   - TransparentFX
